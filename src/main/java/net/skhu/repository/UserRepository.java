@@ -6,6 +6,6 @@ import net.skhu.domain.User;
 
 public interface UserRepository extends JpaRepository<User, Integer>  {
 
-    User findOneByUserId(String userId);
+    User findOneByLoginId(String loginId);
 
 }

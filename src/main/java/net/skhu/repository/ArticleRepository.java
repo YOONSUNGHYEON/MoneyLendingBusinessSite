@@ -24,13 +24,9 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 		Page<Article> page;
 		int boardId = pagination.getBd();
 		String searchText = pagination.getSt();
-		System.out.println();
-		System.out.println();
-		System.out.println(pageable);
-		System.out.println();
 		switch (pagination.getSb()) {
 		case 1:
-			page = this.findByBoardIdAndNameLike(boardId, searchText, pageable);
+			page = this.findByBoardIdAndNameContaining(boardId, searchText, pageable);
 			break;
 		case 2:
 			page = this.findByBoardIdAndTitleContains(boardId, searchText, pageable);
@@ -43,7 +39,6 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 			break;
 		}
 		pagination.setRecordCount((int) page.getTotalElements());
-		System.out.println(page.getContent());
 		return page.getContent();
 	}
 
@@ -51,7 +46,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
 	Page<Article> findByBoardIdAndBodyContains(int boardId, String body, Pageable pageable);
 
-	Page<Article> findByBoardIdAndNameLike(int boardId, String name, Pageable pageable);
+	Page<Article> findByBoardIdAndNameContaining(int boardId, String name, Pageable pageable);
 
 	Page<Article> findByBoardIdAndTitleContains(int boardId, String title, Pageable pageable);
 }

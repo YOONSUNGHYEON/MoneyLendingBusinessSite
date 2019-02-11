@@ -13,7 +13,7 @@ public class UserService {
     @Autowired UserRepository userRepository;
 
     public User login(String loginId, String password) {
-        User user = userRepository.findOneByUserId(loginId);
+    	User user = userRepository.findOneByLoginId(loginId);
         if (user == null) return null;
         String pw = EncryptionUtils.encryptMD5(password);
         if (user.getPassword().equals(pw) == false) return null;

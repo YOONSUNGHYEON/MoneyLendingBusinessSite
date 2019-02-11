@@ -52,7 +52,7 @@
 						aria-haspopup="true" aria-expanded="false"> 회사소개 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="greeting">인사말</a> <a
+							<a class="dropdown-item" href="${R}greeting">인사말</a> <a
 								class="dropdown-item" href="map">찾아오시는길</a> <a
 								class="dropdown-item" href="office">사무실전경</a> <a
 								class="dropdown-item" href="registration">대부업등록증</a>
