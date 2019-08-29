@@ -52,12 +52,10 @@ public class ArticleController {
     @RequestMapping(value="edit", method=RequestMethod.POST)
     public String edit(@Valid ArticleModel a, BindingResult bindingResult,
             Pagination pagination, Model model) {
-    	System.out.println("dddddddddddddddddddddddddd222222222222");
         if (bindingResult.hasErrors()) {
             model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
             return "article/edit";
         }
-        System.out.println("dddddddddddddddddddddddddd");
         articleService.update(a);
         return "redirect:view?id=" + a.getId() + "&" + pagination.getQueryString();
     }
@@ -66,9 +64,13 @@ public class ArticleController {
     public String edit(@RequestParam("id") int id, Pagination pagination, Model model) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("articleModel", articleService.findOne(id));
-        System.out.println("dddddddddddddddddddddddddd");
         return "article/edit";
     }
+
+    @RequestMapping("greeting")
+	public String greeting() {
+		return "article/greeting";
+	}
 
     @RequestMapping("list")
     public String list(Pagination pagination, Model model) {
@@ -79,7 +81,26 @@ public class ArticleController {
         return "article/list";
     }
 
-    @RequestMapping("view")
+    @RequestMapping("login")
+	public String login() {
+		return "article/login";
+	}
+
+	@RequestMapping("map")
+	public String map() {
+		return "article/map";
+	}
+
+	@RequestMapping("office")
+	public String office() {
+		return "article/office";
+	}
+
+	@RequestMapping("registration")
+	public String registration() {
+		return "article/registration";
+	}
+	@RequestMapping("view")
     public String view(@RequestParam("id") int id, Pagination pagination, Model model) {
     	model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("article", articleService.findOne(id));

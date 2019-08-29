@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>--%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
@@ -27,7 +25,6 @@
 <link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${R}res/css/modern-business.css" rel="stylesheet">
-<title>조운대부</title>
 </head>
 <body>
 	<%--       	상단바         	--%>
@@ -79,7 +76,6 @@
 		</div>
 	</nav>
 	<div class="container">
-
 		<%--       container - title       --%>
 		<div>
 			<h1 class="mt-4 mb-3">
@@ -109,7 +105,7 @@
 					<br />
 					<div id="summernote">${ articleModel.body }</div>
 					<form:errors path="body" class="error" />
-					<input type="text" name="body" />
+					<input type="hidden" name="body" />
 				</form:form>
 
 
@@ -123,21 +119,19 @@
 			</div>
 		</div>
 	</div>
-
-
+	</div>
 
 	<script>
-				$('#summernote').summernote({
-					height : 500
-				});
+		$('#summernote').summernote({
+			height : 500
+		});
 
-				function save() {
-					var s = $('#summernote').summernote('code');
-					$('input[name=body]').val(s);
-					$('form').submit();
-				}
-			</script>
-
+		function save() {
+			var s = $('#summernote').summernote('code');
+			$('input[name=body]').val(s);
+			$('form').submit();
+		}
+	</script>
 </body>
 <footer class="py-5 bg-dark">
 	<div class="container">
@@ -158,10 +152,6 @@
 	</div>
 
 </footer>
-
-<!-- Bootstrap core JavaScript -->
-<script src="${R}res/vendor/jquery/jquery.min.js"></script>
-<script src="${R}res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 
 

@@ -9,44 +9,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
-<!--              script                -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/res/js/bootstrap.min.js"></script>
 <script src="${R}res/common.js"></script>
+<script src="${R}res/summernote/summernote.js"></script>
 
-
-<link 
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${R}res/css/modern-business.css" rel="stylesheet">
 
 <title>조운대부</title>
 </head>
-
-<%--  
-
-
-		body 
-
-
- --%>
-
-
 <body>
-
-<!-- Navigation -->
+	<%--       	상단바         	--%>
 	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style = "font-size:medium;">
+		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
 		<div class="container">
 
 			<a class="navbar-brand" href="/"><img href="index"
@@ -57,15 +44,15 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive" >
-				<ul class="navbar-nav ml-auto" height="200px">
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav ml-auto">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 회사소개 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="greeting">인사말</a> <a
+							<a class="dropdown-item" href="${R}greeting">인사말</a> <a
 								class="dropdown-item" href="map">찾아오시는길</a> <a
 								class="dropdown-item" href="office">사무실전경</a> <a
 								class="dropdown-item" href="registration">대부업등록증</a>
@@ -92,100 +79,44 @@
 			</div>
 		</div>
 	</nav>
+	
+	<!-- Page Content -->
+    <div class="container">
 
-	<%--       container       --%>
-	<div class="container">
-		<%--       container - title       --%>
-		<div>
-			<h1 class="mt-4 mb-3">
-				커뮤니티 <small>${ board.boardName }</small>
-			</h1>
+      <!-- Page Heading/Breadcrumbs -->
+      <h1 class="mt-4 mb-3">회사소개
+        <small>인사말</small>
+      </h1>
 
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="list?bd=1">커뮤니티</a></li>
-				<li class="breadcrumb-item active">${ board.boardName }</li>
-			</ol>
-		</div>
-		<div class="row">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="index.html">회사소개</a>
+        </li>
+        <li class="breadcrumb-item active">인사말</li>
+      </ol>
 
-			<!-- 중심 -->
-			<!-- 왼쪽메뉴 -->
-			<div class="col-lg-3 mb-4">
-				<div class="list-group">
-					<a href="list?bd=1" class="list-group-item">공지사항</a> <a
-						href="list?bd=2" class="list-group-item">FAQ</a>
-				</div>
-			</div>
-			<div class="col-lg-9 mb-4" style="font-size: 12px;">
-				</br>
-				<%-- 글쓰기버튼 --%>
-				<c:if test="${ board.id >= 0 }">
-					<div style="height: 50px; float:left; font-size: 12px;">
-						<a class="btn btn-primary" href="create?${pagination.queryString}"
-							style="font-size: 12px;"> <i class="glyphicon glyphicon-plus"></i>
-							글 쓰기
-						</a>
-					</div>
-				</c:if>
-				<div style="float: right; font-size: 12px;">
-					<form:form method="get" modelAttribute="pagination"
-						class="form-inline mb5">
-						<form:hidden path="pg" value="1" />
-						<form:hidden path="bd" />
-						<span style="width: 35px;">검색:</span>
-						<div style="width: 100px;">
-							<form:select path="sb" class="form-control ml20"
-								itemValue="value" itemLabel="label" items="${ searchBy }"
-								style=" font-size:12px; height:30px;" />
-						</div>
-						<div>
-							<form:input path="st" class="form-control"
-								style=" font-size:12px; height:30px;" placeholder="검색문자열" />
-						</div>
+      <!-- Content Row -->
+      <div class="row">
+        <!-- Sidebar Column -->
+        <div class="col-lg-3 mb-4">
+          <div class="list-group">
+            <a href="greeting" class="list-group-item">인사말</a>
+            <a href="map" class="list-group-item">찾아오시는길</a>
+            <a href="office" class="list-group-item">사무실전경</a>
+            <a href="registration" class="list-group-item">대부업등록증</a>
+          </div>
+        </div>
+        <!-- Content Column -->
+        <div class="col-lg-9 mb-4">
+          <h2>Section Heading</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p>
+        </div>
+      </div>
+      <!-- /.row -->
 
-						<%-- 검색 버튼 --%>
-						<button type="submit" class="btn btn-default"
-							style="font-size: 12px;">
-							<i class="glyphicon glyphicon-search"></i> 검색
-						</button>
-
-						<%-- 검색 취소 --%>
-						<c:if test="${ pagination.sb > 0 || pagination.ob > 0}">
-							<a class="btn btn-default" href="list?bd=${board.id}&pg=1"> <i
-								class="glyphicon glyphicon-ban-circle"></i> 검색취소
-							</a>
-						</c:if>
-
-
-					</form:form>
-				</div>
-				<table id="articles" class="table table-bordered">
-					<thead>
-						<tr>
-							<th class="text-center" style="width: 80px;">no</th>
-							<th>제목</th>
-							<th style="width: 150px;">글쓴이</th>
-							<th style="width: 150px;">작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="article" items="${ list }">
-							<tr data-url="view?id=${article.id}&${ pagination.queryString }">
-								<td class="text-center">${ article.no }</td>
-								<td>${ article.title }</td>
-								<td>${ article.user.name }</td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-										value="${ article.writeTime }" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<my:pagination pageSize="${ pagination.sz }"
-					recordCount="${ pagination.recordCount }" queryStringName="pg" />
-			</div>
-		</div>
-	</div>
-	<!-- 하단바 -->
+    </div>
+    <!-- /.container -->
+<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="text-white ">
@@ -197,27 +128,18 @@
 			<p class="text-white font-italic">"대출 시 귀하의 신용등급이 하락할 수 있습니다. 과도한
 				빚 고통의 시작입니다"</p>
 			<sec:authorize access="not authenticated">
-				<a class="btn btn-default" href="${R}guest/login">관리자</a>
+					<a class="btn btn-default" href="${R}guest/login">관리자</a>
 			</sec:authorize>
 			<sec:authorize access="authenticated">
-				<a class="btn btn-default" href="${R}user/logout_processing">로그아웃</a>
-			</sec:authorize>
+    <a class="btn btn-default" href="${R}user/logout_processing">로그아웃</a>
+  </sec:authorize> 
 		</div>
-
+		<!-- /.container -->
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="${R}res/vendor/jquery/jquery.min.js"></script>
 	<script src="${R}res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
-<%--  
-
-
-		body 
-
-
- --%>
 
 </html>
