@@ -17,6 +17,7 @@ public class User {
     int id;
 
     String loginId;
+
     String password;
     String name;
     String email;

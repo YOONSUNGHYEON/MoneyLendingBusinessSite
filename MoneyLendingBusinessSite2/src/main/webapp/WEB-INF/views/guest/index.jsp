@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>--%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
@@ -24,8 +25,9 @@
 <script src="${R}res/common.js"></script>
 
 
-<link 
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
 <link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${R}res/css/modern-business.css" rel="stylesheet">
@@ -35,10 +37,11 @@
 <body>
 	<!-- Navigation -->
 	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
+		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top"
+		style="font-size: medium;">
 		<div class="container">
 
-			<a class="navbar-brand" href="/"><img href="index"
+			<a class="navbar-brand" href="index"><img href="index"
 				src="${R}res/images/title6.jpg" width="200px"></img></a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
@@ -47,17 +50,17 @@
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
+				<ul class="navbar-nav ml-auto" height="200px">
 					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="article/greeting"
+						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 회사소개 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="article/greeting">인사말</a> <a
-								class="dropdown-item" href="article/map">찾아오시는길</a> <a
-								class="dropdown-item" href="article/office">사무실전경</a> <a
-								class="dropdown-item" href="article/registration">대부업등록증</a>
+							<a class="dropdown-item" href="greeting">인사말</a> <a
+								class="dropdown-item" href="map">찾아오시는길</a> <a
+								class="dropdown-item" href="office">사무실전경</a> <a
+								class="dropdown-item" href="registration">대부업등록증</a>
 						</div></li>
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog"
@@ -73,8 +76,8 @@
 							커뮤니티 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="article/list?bd=1">공지사항</a> <a
-								class="dropdown-item" href="article/list?bd=2">FAQ</a>
+							<a class="dropdown-item" href="list?bd=1">공지사항</a> <a
+								class="dropdown-item" href="list?bd=2">FAQ</a>
 						</div></li>
 
 				</ul>
@@ -188,11 +191,12 @@
 			<p class="text-white font-italic">"대출 시 귀하의 신용등급이 하락할 수 있습니다. 과도한
 				빚 고통의 시작입니다"</p>
 			<sec:authorize access="not authenticated">
-				<a class="btn btn-default" href="${R}guest/login">관리자</a>
+				<a class="btn btn-default" href="${R}guest/login">로그인</a>
 			</sec:authorize>
 			<sec:authorize access="authenticated">
 				<a class="btn btn-default" href="${R}user/logout_processing">로그아웃</a>
 			</sec:authorize>
+
 		</div>
 		<!-- /.container -->
 	</footer>

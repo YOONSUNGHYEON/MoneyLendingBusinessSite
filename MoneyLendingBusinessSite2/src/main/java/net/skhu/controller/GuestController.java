@@ -17,19 +17,21 @@ import net.skhu.repository.BoardRepository;
 import net.skhu.service.ArticleService;
 
 @Controller
-@RequestMapping("article")
-public class ArticleController {
+@RequestMapping("guest")
+public class GuestController {
 
     @Autowired ArticleService articleService;
     @Autowired BoardRepository boardRepository;
 
-    @Transactional
+
+
+	@Transactional
     @RequestMapping(value="create", method=RequestMethod.POST)
     public String create(@Valid ArticleModel a, BindingResult bindingResult,
             Pagination pagination, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
-            return "article/edit";
+            return "guest/edit";
         }
         int id = articleService.insertArticle(a, pagination.getBd(), 1);
         return "redirect:view?id=" + id + "&" + pagination.getQueryString();
@@ -39,7 +41,7 @@ public class ArticleController {
     public String create(Pagination pagination, Model model) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("articleModel", new ArticleModel());
-        return "article/edit";
+        return "guest/edit";
     }
 
     @RequestMapping(value="delete", method=RequestMethod.GET)
@@ -54,7 +56,7 @@ public class ArticleController {
             Pagination pagination, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
-            return "article/edit";
+            return "guest/edit";
         }
         articleService.update(a);
         return "redirect:view?id=" + a.getId() + "&" + pagination.getQueryString();
@@ -64,12 +66,17 @@ public class ArticleController {
     public String edit(@RequestParam("id") int id, Pagination pagination, Model model) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("articleModel", articleService.findOne(id));
-        return "article/edit";
+        return "guest/edit";
     }
 
     @RequestMapping("greeting")
 	public String greeting() {
-		return "article/greeting";
+		return "guest/greeting";
+	}
+
+    @RequestMapping({ "/", "index" })
+	public String index() {
+		return "guest/index";
 	}
 
     @RequestMapping("list")
@@ -78,32 +85,32 @@ public class ArticleController {
         model.addAttribute("list", articleService.findAll(pagination));
         model.addAttribute("orderBy", articleService.getOrderByOptions());
         model.addAttribute("searchBy", articleService.getSearchByOptions());
-        return "article/list";
+        return "guest/list";
     }
 
     @RequestMapping("login")
 	public String login() {
-		return "article/login";
+		return "guest/login";
 	}
 
 	@RequestMapping("map")
 	public String map() {
-		return "article/map";
+		return "guest/map";
 	}
 
 	@RequestMapping("office")
 	public String office() {
-		return "article/office";
+		return "guest/office";
 	}
 
 	@RequestMapping("registration")
 	public String registration() {
-		return "article/registration";
+		return "guest/registration";
 	}
 	@RequestMapping("view")
     public String view(@RequestParam("id") int id, Pagination pagination, Model model) {
     	model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("article", articleService.findOne(id));
-        return "article/view";
+        return "guest/view";
     }
 }

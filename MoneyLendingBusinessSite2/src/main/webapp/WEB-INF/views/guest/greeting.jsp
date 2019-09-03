@@ -1,39 +1,42 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%-- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>--%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
 <c:url var="R" value="/" />
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="">
-<meta name="author" content="">
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/res/css/bootstrap.min.css"
-	rel="stylesheet" media="screen">
+
+
+<!--              script                -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/res/js/bootstrap.min.js"></script>
-<title>Modern Business - Start Bootstrap Template</title>
+<script src="${R}res/common.js"></script>
 
-<!-- Bootstrap core CSS -->
-<link href="${R}res/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!-- Custom styles for this template -->
+<link 
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
+	rel="stylesheet">
 <link href="${R}res/css/modern-business.css" rel="stylesheet">
 
 <title>조운대부</title>
 </head>
 <body>
+	<%--       	상단바         	--%>
 	<!-- Navigation -->
 	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
+		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style = "font-size:medium;">
 		<div class="container">
 
 			<a class="navbar-brand" href="index"><img href="index"
@@ -44,8 +47,8 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
+			<div class="collapse navbar-collapse" id="navbarResponsive" >
+				<ul class="navbar-nav ml-auto" height="200px">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
@@ -71,28 +74,28 @@
 							커뮤니티 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="guest/notice">공지사항</a> <a
-								class="dropdown-item" href="guest/list?bd=1">FAQ</a>
+							<a class="dropdown-item" href="list?bd=1">공지사항</a> <a
+								class="dropdown-item" href="list?bd=2">FAQ</a>
 						</div></li>
 
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
-	 <!-- Page Content -->
+
+	<!-- Page Content -->
     <div class="container">
 
       <!-- Page Heading/Breadcrumbs -->
       <h1 class="mt-4 mb-3">회사소개
-      <small>대부업등록증</small>
+        <small>인사말</small>
       </h1>
 
       <ol class="breadcrumb">
         <li class="breadcrumb-item">
           <a href="index.html">회사소개</a>
         </li>
-        <li class="breadcrumb-item active">대부업등록증</li>
+        <li class="breadcrumb-item active">인사말</li>
       </ol>
 
       <!-- Content Row -->
@@ -103,7 +106,7 @@
             <a href="greeting" class="list-group-item">인사말</a>
             <a href="map" class="list-group-item">찾아오시는길</a>
             <a href="office" class="list-group-item">사무실전경</a>
-            <a href="registration" class="list-group-item action">대부업등록증</a>
+            <a href="registration" class="list-group-item">대부업등록증</a>
           </div>
         </div>
         <!-- Content Column -->
@@ -115,7 +118,7 @@
       <!-- /.row -->
 
     </div>
-	
+    <!-- /.container -->
 <!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
@@ -141,3 +144,5 @@
 	<script src="${R}res/vendor/jquery/jquery.min.js"></script>
 	<script src="${R}res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
+
+</html>

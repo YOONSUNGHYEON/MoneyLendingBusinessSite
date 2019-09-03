@@ -9,52 +9,36 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
+<!--              script                -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/res/js/bootstrap.min.js"></script>
 <script src="${R}res/common.js"></script>
-<script src="${R}res/summernote/summernote.js"></script>
 
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link 
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 <link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${R}res/css/modern-business.css" rel="stylesheet">
 
 <title>조운대부</title>
-<style>
-div#info span:nth-child(odd) {
-	color: #aaa;
-}
-
-div#info span:nth-child(even) {
-	margin-right: 40px;
-}
-
-div#body {
-	min-height: 500px;
-}
-
-div#buttons {
-	min-height: 100px;
-}
-</style>
-
 </head>
 <body>
-	<%--       	상단바         	--%>
+	<!-- Navigation -->
 	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top">
+		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style = "font-size:medium;">
 		<div class="container">
 
-			<a class="navbar-brand" href="/"><img href="index"
+			<a class="navbar-brand" href="index"><img href="index"
 				src="${R}res/images/title6.jpg" width="200px"></img></a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
@@ -62,15 +46,15 @@ div#buttons {
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive">
-				<ul class="navbar-nav ml-auto">
+			<div class="collapse navbar-collapse" id="navbarResponsive" >
+				<ul class="navbar-nav ml-auto" height="200px">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
 						id="navbarDropdownPortfolio" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"> 회사소개 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownPortfolio">
-							<a class="dropdown-item" href="${R}greeting">인사말</a> <a
+							<a class="dropdown-item" href="greeting">인사말</a> <a
 								class="dropdown-item" href="map">찾아오시는길</a> <a
 								class="dropdown-item" href="office">사무실전경</a> <a
 								class="dropdown-item" href="registration">대부업등록증</a>
@@ -98,59 +82,101 @@ div#buttons {
 		</div>
 	</nav>
 
-	<div class="container">
-		<%--       container - title       --%>
-		<div>
-			<h1 class="mt-4 mb-3">
-				커뮤니티 <small>${ board.boardName }</small>
-			</h1>
-
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="list?bd=1">커뮤니티</a></li>
-				<li class="breadcrumb-item active">${ board.boardName }</li>
+	<header>
+		<div id="carouselExampleIndicators" class="carousel slide"
+			data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0"
+					class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
 			</ol>
+			<div class="carousel-inner" role="listbox">
+				<!-- Slide One - Set the background image for this slide in the line below -->
+				<div class="carousel-item active"
+					style="background-image: url('${R}res/images/main_img6.jpg')">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
+				<!-- Slide Two - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('${R}res/images/main_img7.jpg')">
+					<div class="carousel-caption d-none d-md-block"></div>
+				</div>
+				<!-- Slide Three - Set the background image for this slide in the line below -->
+				<div class="carousel-item"
+					style="background-image: url('http://placehold.it/1900x1080')">
+					<div class="carousel-caption d-none d-md-block">
+						<h3>Third Slide</h3>
+						<p>This is a description for the third slide.</p>
+					</div>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators"
+				role="button" data-slide="prev"> <span
+				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="sr-only">Previous</span>
+			</a> <a class="carousel-control-next" href="#carouselExampleIndicators"
+				role="button" data-slide="next"> <span
+				class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="sr-only">Next</span>
+			</a>
 		</div>
-		<hr />
+	</header>
+
+	<!-- Page Content -->
+	<div class="container">
+
+		<h1 class="my-4"></h1>
+
+		<!-- Marketing Icons Section -->
 		<div class="row">
-
-			<!-- 중심 -->
-			<!-- 왼쪽메뉴 -->
-			<div class="col-lg-3 mb-4">
-				<div class="list-group">
-					<a href="list?bd=1" class="list-group-item">공지사항</a> <a
-						href="list?bd=2" class="list-group-item">FAQ</a>
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<h4 class="card-header">
+						<center>공통 준비 서류</center>
+					</h4>
+					<div class="card-body">
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit. Sapiente esse necessitatibus neque.</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Learn More</a>
+					</div>
 				</div>
 			</div>
-			<div class="col-lg-9 mb-4" style="font-size: 12px;">
-				<h3>${ article.title }</h3>
-				<hr />
-
-				<div id="info">
-					<span>no:</span> <span>${ article.no }</span> <span>글쓴이:</span> <span>${ article.user.name }</span>
-
-					<span>글쓴시각:</span> <span><fmt:formatDate
-							pattern="yyyy-MM-dd HH:mm:ss" value="${ article.writeTime }" /></span>
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<h4 class="card-header">Card Title</h4>
+					<div class="card-body">
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit. Reiciendis ipsam eos, nam perspiciatis natus
+							commodi similique totam consectetur praesentium molestiae atque
+							exercitationem ut consequuntur, sed eveniet, magni nostrum sint
+							fuga.</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Learn More</a>
+					</div>
 				</div>
-				<hr />
-				<div id="body">${ article.body }</div>
-				<hr />
-				<div id="buttons">
-					<a class="btn btn-primary"
-						href="edit?id=${ article.id }&${ pagination.queryString }"> <i
-						class="glyphicon glyphicon-pencil"></i> 수정
-					</a> <a class="btn btn-danger"
-						href="delete?id=${ article.id }&${ pagination.queryString }"
-						data-confirm-delete> <i class="glyphicon glyphicon-remove"></i>
-						삭제
-					</a> <a class="btn btn-default" href="list?${ pagination.queryString }">
-						<i class="glyphicon glyphicon-list"></i> 목록으로
-					</a>
+			</div>
+			<div class="col-lg-4 mb-4">
+				<div class="card h-100">
+					<h4 class="card-header">Card Title</h4>
+					<div class="card-body">
+						<p class="card-text">Lorem ipsum dolor sit amet, consectetur
+							adipisicing elit. Sapiente esse necessitatibus neque.</p>
+					</div>
+					<div class="card-footer">
+						<a href="#" class="btn btn-primary">Learn More</a>
+					</div>
 				</div>
 			</div>
 		</div>
+		<!-- /.row -->
+
 	</div>
-	</body>
-	<!-- 하단바 -->
+
+	<!-- Footer -->
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="text-white ">
@@ -168,13 +194,11 @@ div#buttons {
 				<a class="btn btn-default" href="${R}user/logout_processing">로그아웃</a>
 			</sec:authorize>
 		</div>
-
+		<!-- /.container -->
 	</footer>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="${R}res/vendor/jquery/jquery.min.js"></script>
 	<script src="${R}res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
+</body>
 </html>
-

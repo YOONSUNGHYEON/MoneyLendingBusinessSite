@@ -32,24 +32,14 @@
 
 <title>조운대부</title>
 </head>
-
-<%--  
-
-
-		body 
-
-
- --%>
-
-
 <body>
-
-<!-- Navigation -->
+	<%--       	상단바         	--%>
+	<!-- Navigation -->
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style = "font-size:medium;">
 		<div class="container">
 
-			<a class="navbar-brand" href="/"><img href="index"
+			<a class="navbar-brand" href="index"><img href="index"
 				src="${R}res/images/title6.jpg" width="200px"></img></a>
 			<button class="navbar-toggler navbar-toggler-right" type="button"
 				data-toggle="collapse" data-target="#navbarResponsive"
@@ -93,7 +83,6 @@
 		</div>
 	</nav>
 
-	<%--       container       --%>
 	<div class="container">
 		<%--       container - title       --%>
 		<div>
@@ -117,107 +106,61 @@
 				</div>
 			</div>
 			<div class="col-lg-9 mb-4" style="font-size: 12px;">
-				</br>
-				<%-- 글쓰기버튼 --%>
-				<c:if test="${ board.id >= 0 }">
-					<div style="height: 50px; float:left; font-size: 12px;">
-						<a class="btn btn-primary" href="create?${pagination.queryString}"
-							style="font-size: 12px;"> <i class="glyphicon glyphicon-plus"></i>
-							글 쓰기
-						</a>
-					</div>
-				</c:if>
-				<div style="float: right; font-size: 12px;">
-					<form:form method="get" modelAttribute="pagination"
-						class="form-inline mb5">
-						<form:hidden path="pg" value="1" />
-						<form:hidden path="bd" />
-						<span style="width: 35px;">검색:</span>
-						<div style="width: 100px;">
-							<form:select path="sb" class="form-control ml20"
-								itemValue="value" itemLabel="label" items="${ searchBy }"
-								style=" font-size:12px; height:30px;" />
-						</div>
-						<div>
-							<form:input path="st" class="form-control"
-								style=" font-size:12px; height:30px;" placeholder="검색문자열" />
-						</div>
-
-						<%-- 검색 버튼 --%>
-						<button type="submit" class="btn btn-default"
-							style="font-size: 12px;">
-							<i class="glyphicon glyphicon-search"></i> 검색
-						</button>
-
-						<%-- 검색 취소 --%>
-						<c:if test="${ pagination.sb > 0 || pagination.ob > 0}">
-							<a class="btn btn-default" href="list?bd=${board.id}&pg=1"> <i
-								class="glyphicon glyphicon-ban-circle"></i> 검색취소
-							</a>
-						</c:if>
+				<form:form method="post" modelAttribute="articleModel">
+					<span>제목 </span>
+					<form:input path="title" class="form-control" />
+					<form:errors path="title" class="error" />
+					<br />
+					<div id="summernote">${ articleModel.body }</div>
+					<form:errors path="body" class="error" />
+					<input type="hidden" name="body" />
+				</form:form>
 
 
-					</form:form>
+				<div id="buttons">
+					<a class="btn btn-primary" onclick="save()"> <i
+						class="glyphicon glyphicon-hdd"></i> 저장
+					</a> <a class="btn btn-default" href="list?${ pagination.queryString }">
+						<i class="glyphicon glyphicon-list"></i> 목록으로
+					</a>
 				</div>
-				<table id="articles" class="table table-bordered">
-					<thead>
-						<tr>
-							<th class="text-center" style="width: 80px;">no</th>
-							<th>제목</th>
-							<th style="width: 150px;">글쓴이</th>
-							<th style="width: 150px;">작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<c:forEach var="article" items="${ list }">
-							<tr data-url="view?id=${article.id}&${ pagination.queryString }">
-								<td class="text-center">${ article.no }</td>
-								<td>${ article.title }</td>
-								<td>${ article.user.name }</td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-										value="${ article.writeTime }" /></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-				<my:pagination pageSize="${ pagination.sz }"
-					recordCount="${ pagination.recordCount }" queryStringName="pg" />
 			</div>
 		</div>
 	</div>
-	<!-- 하단바 -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="text-white ">
-				경기화성-0020 </br> </br> 주소 : 경기도 화성시 팔탄면 시청로 934-2 I동 202호 I TEL : 031-352-0097
-				I FAX : 031-352-5097 </br> </br> 이자율 : 월 0.6% ~ 2.0% I 연체이자율 : 년 24% 이내 I 수수료
-				: 이자 외 별도부대비용 없음.</br> </br> 등록시도명칭 : 경기도 화성시청 경제정책과(031-369-2694) | 조기상환수수료
-				없음.</br> </br>
-			</p>
-			<p class="text-white font-italic">"대출 시 귀하의 신용등급이 하락할 수 있습니다. 과도한
-				빚 고통의 시작입니다"</p>
-			<sec:authorize access="not authenticated">
-				<a class="btn btn-default" href="${R}guest/login">관리자</a>
-			</sec:authorize>
-			<sec:authorize access="authenticated">
-				<a class="btn btn-default" href="${R}user/logout_processing">로그아웃</a>
-			</sec:authorize>
-		</div>
+	</div>
 
-	</footer>
+	<script>
+		$('#summernote').summernote({
+			height : 500
+		});
 
-	<!-- Bootstrap core JavaScript -->
-	<script src="${R}res/vendor/jquery/jquery.min.js"></script>
-	<script src="${R}res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+		function save() {
+			var s = $('#summernote').summernote('code');
+			$('input[name=body]').val(s);
+			$('form').submit();
+		}
+	</script>
 </body>
+<footer class="py-5 bg-dark">
+	<div class="container">
+		<p class="text-white ">
+			경기화성-0020 </br> </br> 주소 : 경기도 화성시 팔탄면 시청로 934-2 I동 202호 I TEL : 031-352-0097 I
+			FAX : 031-352-5097 </br> </br> 이자율 : 월 0.6% ~ 2.0% I 연체이자율 : 년 24% 이내 I 수수료 :
+			이자 외 별도부대비용 없음.</br> </br> 등록시도명칭 : 경기도 화성시청 경제정책과(031-369-2694) | 조기상환수수료 없음.</br>
+			</br>
+		</p>
+		<p class="text-white font-italic">"대출 시 귀하의 신용등급이 하락할 수 있습니다. 과도한
+			빚 고통의 시작입니다"</p>
+		<sec:authorize access="not authenticated">
+			<a class="btn btn-default" href="${R}guest/login">관리자</a>
+		</sec:authorize>
+		<sec:authorize access="authenticated">
+			<a class="btn btn-default" href="${R}user/logout_processing">로그아웃</a>
+		</sec:authorize>
+	</div>
 
-<%--  
+</footer>
 
 
-		body 
-
-
- --%>
 
 </html>
