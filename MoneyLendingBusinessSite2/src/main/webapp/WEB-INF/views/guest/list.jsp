@@ -119,14 +119,24 @@
 			<div class="col-lg-9 mb-4" style="font-size: 12px;">
 				</br>
 				<%-- 글쓰기버튼 --%>
-				<c:if test="${ board.id >= 0 }">
+				<c:if test="${ board.id >= 2 }">
 					<div style="height: 50px; float:left; font-size: 12px;">
 						<a class="btn btn-primary" href="create?${pagination.queryString}"
 							style="font-size: 12px;"> <i class="glyphicon glyphicon-plus"></i>
 							글 쓰기
 						</a>
 					</div>
+					 
 				</c:if>
+				<sec:authorize access="authenticated">
+				<div style="height: 50px; float:left; font-size: 12px;">
+						<a class="btn btn-primary" href="create?${pagination.queryString}"
+							style="font-size: 12px;"> <i class="glyphicon glyphicon-plus"></i>
+							글 쓰기
+						</a>
+					</div>
+					</sec:authorize>
+			
 				<div style="float: right; font-size: 12px;">
 					<form:form method="get" modelAttribute="pagination"
 						class="form-inline mb5">

@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     protected void configure(HttpSecurity http) throws Exception
     {
         http.authorizeRequests()
-            .antMatchers("/user/**").access("ROLE_ADMIN")
+            .antMatchers("/admin/**").access("ROLE_ADMIN")
             .antMatchers("/guest/**").permitAll()
             .antMatchers("/").permitAll()
             .antMatchers("/**").authenticated();
@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .loginPage("/guest/login")
             .loginProcessingUrl("/guest/login_processing")
             .failureUrl("/guest/login?error")
-            .defaultSuccessUrl("/user/index", true)
+            .defaultSuccessUrl("/guest/index", true)
             .usernameParameter("loginId")
             .passwordParameter("passwd");
 
