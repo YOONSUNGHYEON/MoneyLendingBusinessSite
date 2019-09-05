@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
- <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
@@ -24,8 +25,9 @@
 <script src="${R}res/common.js"></script>
 
 
-<link 
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
 <link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${R}res/css/modern-business.css" rel="stylesheet">
@@ -44,9 +46,10 @@
 
 <body>
 
-<!-- Navigation -->
+	<!-- Navigation -->
 	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style = "font-size:medium;">
+		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top"
+		style="font-size: medium;">
 		<div class="container">
 
 			<a class="navbar-brand" href="index"><img href="index"
@@ -57,7 +60,7 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive" >
+			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" height="200px">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -94,7 +97,7 @@
 	</nav>
 
 	<%--       container       --%>
-	<div class="container">
+	<div class="container" style="height: 650px;">
 		<%--       container - title       --%>
 		<div>
 			<h1 class="mt-4 mb-3">
@@ -119,52 +122,55 @@
 			<div class="col-lg-9 mb-4" style="font-size: 12px;">
 				</br>
 				<%-- 글쓰기버튼 --%>
-				<c:if test="${ board.id >= 2 }">
-					<div style="height: 50px; float:left; font-size: 12px;">
-						<a class="btn btn-primary" href="create?${pagination.queryString}"
-							style="font-size: 12px;"> <i class="glyphicon glyphicon-plus"></i>
-							글 쓰기
-						</a>
+				<div style="height: 50px;">
+					<div style="height: 50px; float: left; font-size: 12px;">
+						<c:choose>
+							<c:when test="${ board.id >= 2 }">
+								<a class="btn btn-primary"
+									href="create?${pagination.queryString}"
+									style="font-size: 12px;"> <i
+									class="glyphicon glyphicon-plus"></i> 글 쓰기
+								</a>
+							</c:when>
+							<c:otherwise>
+								<sec:authorize access="authenticated">
+									<a class="btn btn-primary"
+										href="create?${pagination.queryString}"
+										style="font-size: 12px;"> <i
+										class="glyphicon glyphicon-plus"></i> 글 쓰기
+									</a>
+								</sec:authorize>
+							</c:otherwise>
+						</c:choose>
 					</div>
-					 
-				</c:if>
-				<sec:authorize access="authenticated">
-				<div style="height: 50px; float:left; font-size: 12px;">
-						<a class="btn btn-primary" href="create?${pagination.queryString}"
-							style="font-size: 12px;"> <i class="glyphicon glyphicon-plus"></i>
-							글 쓰기
-						</a>
+					<div style="float: right; font-size: 12px;">
+						<form:form method="get" modelAttribute="pagination"
+							class="form-inline mb5">
+							<form:hidden path="pg" value="1" />
+							<form:hidden path="bd" />
+							<span style="width: 35px;">검색:</span>
+							<div style="width: 100px;">
+								<form:select path="sb" class="form-control ml20"
+									itemValue="value" itemLabel="label" items="${ searchBy }"
+									style=" font-size:12px; height:30px;" />
+							</div>
+							<div>
+								<form:input path="st" class="form-control"
+									style=" font-size:12px; height:30px;" placeholder="검색문자열" />
+							</div>
+
+							<%-- 검색 버튼 --%>
+							<button type="submit" class="btn btn-default"
+								style="font-size: 12px;">
+								<i class="glyphicon glyphicon-search"></i> 검색
+							</button>
 					</div>
-					</sec:authorize>
-			
-				<div style="float: right; font-size: 12px;">
-					<form:form method="get" modelAttribute="pagination"
-						class="form-inline mb5">
-						<form:hidden path="pg" value="1" />
-						<form:hidden path="bd" />
-						<span style="width: 35px;">검색:</span>
-						<div style="width: 100px;">
-							<form:select path="sb" class="form-control ml20"
-								itemValue="value" itemLabel="label" items="${ searchBy }"
-								style=" font-size:12px; height:30px;" />
-						</div>
-						<div>
-							<form:input path="st" class="form-control"
-								style=" font-size:12px; height:30px;" placeholder="검색문자열" />
-						</div>
-
-						<%-- 검색 버튼 --%>
-						<button type="submit" class="btn btn-default"
-							style="font-size: 12px;">
-							<i class="glyphicon glyphicon-search"></i> 검색
-						</button>
-
-						<%-- 검색 취소 --%>
-						<c:if test="${ pagination.sb > 0 || pagination.ob > 0}">
-							<a class="btn btn-default" href="list?bd=${board.id}&pg=1"> <i
-								class="glyphicon glyphicon-ban-circle"></i> 검색취소
-							</a>
-						</c:if>
+					<%-- 검색 취소 --%>
+					<c:if test="${ pagination.sb > 0 || pagination.ob > 0}">
+						<a class="btn btn-default" href="list?bd=${board.id}&pg=1"> <i
+							class="glyphicon glyphicon-ban-circle"></i> 검색취소
+						</a>
+					</c:if>
 
 
 					</form:form>
