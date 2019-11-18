@@ -8,12 +8,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import lombok.Data;
 
 
 @Data
 @Entity
+@Table(name="article")
+
 public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

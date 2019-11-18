@@ -1,19 +1,20 @@
 $(function() {
 
-    $("[data-url]").click(function() {
-        var url = $(this).attr("data-url");
-        location.href = url;
-    })
+	$("[data-url]").click(function() {
+		var url = $(this).attr("data-url");
+		location.href = url;
+	})
 
-    $("[data-confirm-delete]").click(function() {
-        return confirm("삭제하시겠습니까?");
-    })
-    
-    $(".autosubmit").change(function() {
-        $(this).parents("form").submit();
-    })
-     
+	$("[data-confirm-delete]").click(function() {
+		return confirm("삭제하시겠습니까???");
+	})
+
+	$('#data-confirm-send').click(function() {
+		return confirm("신속한 답변해드리겠습니다.");
+	})
+
+	$(".autosubmit").change(function() {
+		$(this).parents("form").submit();
+	})
+
 })
-
-
-

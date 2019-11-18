@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     }
 
     @Override
-    public void configure(WebSecurity web) throws Exception
+    public void configure(WebSecurity web)
     {
         web.ignoring().antMatchers("/res/**");
         web.ignoring().antMatchers("/WEB-INF/tags/**");

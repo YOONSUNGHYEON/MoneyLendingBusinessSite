@@ -15,27 +15,27 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<!--              script                -->
 <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/res/js/bootstrap.min.js"></script>
 <script src="${R}res/common.js"></script>
-<script src="${R}res/summernote/summernote.js"></script>
 
 
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link href="${R}res/summernote/summernote.css" rel="stylesheet">
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
 <link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${R}res/css/modern-business.css" rel="stylesheet">
-
 </head>
 <body>
 	<%--       	상단바         	--%>
 	<!-- Navigation -->
 	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style = "font-size:medium;">
+		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top"
+		style="font-size: medium;">
 		<div class="container">
 
 			<a class="navbar-brand" href="index"><img href="index"
@@ -46,7 +46,7 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive" >
+			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" height="200px">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -73,7 +73,7 @@
 							커뮤니티 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="list?bd=0">공지사항</a> <a
+							<a class="dropdown-item" href="list?bd=2">공지사항</a> <a
 								class="dropdown-item" href="list?bd=1">FAQ</a>
 						</div></li>
 
@@ -100,29 +100,36 @@
 			<!-- 왼쪽메뉴 -->
 			<div class="col-lg-3 mb-4">
 				<div class="list-group">
-					<a href="list?bd=0" class="list-group-item">공지사항</a> <a
+					<a href="list?bd=2" class="list-group-item">공지사항</a> <a
 						href="list?bd=1" class="list-group-item">FAQ</a>
 				</div>
 			</div>
+
 			<div class="col-lg-9 mb-4" style="font-size: 12px;">
-				<form:form method="post" modelAttribute="articleModel">
-					<span>제목 </span>
-					<form:input path="title" class="form-control" />
-					<form:errors path="title" class="error" />
-					<br />
-					<div id="summernote">${ articleModel.body }</div>
-					<form:errors path="body" class="error" />
-					<input type="hidden" name="body" />
-				</form:form>
-
-
-				<div id="buttons">
-					<a class="btn btn-primary" onclick="save()"> <i
-						class="glyphicon glyphicon-hdd"></i> 저장
-					</a> <a class="btn btn-default" href="list?${ pagination.queryString }">
-						<i class="glyphicon glyphicon-list"></i> 목록으로
-					</a>
+				<div class="card my-4">
+					<h3 class="card-header" style="font-weight: bold;">문의하기</h3>
+					<div class="card-body">
+						<div class="form-group">
+							<form:form method="post" modelAttribute="articleModel">
+								<label>연락처</label>
+								<form:input path="title" class="form-control"
+									style="width:400px;" />
+									<form:errors path="title" class="error" />
+								</br>
+								<label>추가내용</label>
+								<textarea class="form-control" rows="15" path="body" name="body"></textarea>
+								<form:errors path="body" class="error" />
+						</div>
+						</br>
+						<button type="submit" class="btn btn-primary btn-block"
+							style="height: 40px; text-size: 50px">
+							<span class="glyphicon glyphicon-ok"></span> 문의하기
+						</button>
+						</form:form>
+					</div>
 				</div>
+
+
 			</div>
 		</div>
 	</div>
@@ -134,8 +141,7 @@
 		});
 
 		function save() {
-			var s = $('#summernote').summernote('code');
-			$('input[name=body]').val(s);
+			
 			$('form').submit();
 		}
 	</script>

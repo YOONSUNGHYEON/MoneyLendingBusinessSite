@@ -52,7 +52,6 @@ html, body {
 	bottom: 0;
 	width: 100%;
 	height: 250px;
-
 }
 </style>
 <title>조운대부</title>
@@ -100,8 +99,8 @@ html, body {
 							커뮤니티 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="list?bd=1">공지사항</a> <a
-								class="dropdown-item" href="list?bd=2">FAQ</a>
+<a class="dropdown-item" href="list?bd=0">공지사항</a> <a
+								class="dropdown-item" href="list?bd=1">FAQ</a>
 						</div></li>
 
 				</ul>
@@ -119,7 +118,7 @@ html, body {
 				</h1>
 
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="list?bd=1">커뮤니티</a></li>
+					<li class="breadcrumb-item"><a href="list?bd=0">커뮤니티</a></li>
 					<li class="breadcrumb-item active">${ board.boardName }</li>
 				</ol>
 			</div>
@@ -130,8 +129,8 @@ html, body {
 				<!-- 왼쪽메뉴 -->
 				<div class="col-lg-3 mb-4">
 					<div class="list-group">
-						<a href="list?bd=1" class="list-group-item">공지사항</a> <a
-							href="list?bd=2" class="list-group-item">FAQ</a>
+						<a href="list?bd=0" class="list-group-item">공지사항</a> <a
+							href="list?bd=1" class="list-group-item">FAQ</a>
 					</div>
 				</div>
 				<div class="col-lg-9 mb-4" style="font-size: 12px;" id="content">
@@ -139,15 +138,21 @@ html, body {
 					<hr />
 
 					<div id="info">
-						<span>no:</span> <span>${ article.no }</span> <span>글쓴이:</span> <span>${ article.user.name }</span>
+						<span>${ article.user.name }</span>
 
-						<span>글쓴시각:</span> <span><fmt:formatDate
-								pattern="yyyy-MM-dd HH:mm:ss" value="${ article.writeTime }" /></span>
+						<%-- <span>글쓴시각:</span> <span><fmt:formatDate
+								pattern="yyyy-MM-dd HH:mm:ss" value="${ article.writeTime }" /></span>--%>
 					</div>
 					<hr />
 					<div id="body">${ article.body }</div>
 					<hr />
+		
+					
+					
+									
+							
 					<div id="buttons" style="min-height: 20%;">
+					<sec:authorize access="authenticated">
 						<a class="btn btn-primary"
 							href="edit?id=${ article.id }&${ pagination.queryString }"> <i
 							class="glyphicon glyphicon-pencil"></i> 수정
@@ -155,11 +160,14 @@ html, body {
 							href="delete?id=${ article.id }&${ pagination.queryString }"
 							data-confirm-delete> <i class="glyphicon glyphicon-remove"></i>
 							삭제
-						</a> <a class="btn btn-default"
+						</a> 
+						</sec:authorize>
+						<a class="btn btn-default"
 							href="list?${ pagination.queryString }"> <i
 							class="glyphicon glyphicon-list"></i> 목록으로
 						</a>
 					</div>
+						
 				</div>
 			</div>
 		</div>

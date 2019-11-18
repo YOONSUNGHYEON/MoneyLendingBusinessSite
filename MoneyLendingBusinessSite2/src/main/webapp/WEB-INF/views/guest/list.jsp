@@ -87,8 +87,14 @@
 							커뮤니티 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="list?bd=1">공지사항</a> <a
-								class="dropdown-item" href="list?bd=2">FAQ</a>
+							<a class="dropdown-item" href="list?bd=2">공지사항</a>
+							<sec:authorize access="not authenticated">
+								<a class="dropdown-item" href="FAQ?bd=1">FAQ</a>
+							</sec:authorize>
+							<sec:authorize access="authenticated">
+								<a class="dropdown-item" href="list?bd=1">FAQ</a>
+							</sec:authorize>
+							
 						</div></li>
 
 				</ul>
@@ -105,7 +111,7 @@
 			</h1>
 
 			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="list?bd=1">커뮤니티</a></li>
+				<li class="breadcrumb-item"><a href="list?bd=0">커뮤니티</a></li>
 				<li class="breadcrumb-item active">${ board.boardName }</li>
 			</ol>
 		</div>
@@ -115,8 +121,8 @@
 			<!-- 왼쪽메뉴 -->
 			<div class="col-lg-3 mb-4">
 				<div class="list-group">
-					<a href="list?bd=1" class="list-group-item">공지사항</a> <a
-						href="list?bd=2" class="list-group-item">FAQ</a>
+					<a href="list?bd=2" class="list-group-item">공지사항</a> <a
+						href="list?bd=1" class="list-group-item">FAQ</a>
 				</div>
 			</div>
 			<div class="col-lg-9 mb-4" style="font-size: 12px;">
@@ -181,7 +187,7 @@
 							<th class="text-center" style="width: 80px;">no</th>
 							<th>제목</th>
 							<th style="width: 150px;">글쓴이</th>
-							<th style="width: 150px;">작성일</th>
+
 						</tr>
 					</thead>
 					<tbody>
@@ -190,8 +196,8 @@
 								<td class="text-center">${ article.no }</td>
 								<td>${ article.title }</td>
 								<td>${ article.user.name }</td>
-								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
-										value="${ article.writeTime }" /></td>
+								<%-- <td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
+										value="${ article.writeTime }" /></td>--%>
 							</tr>
 						</c:forEach>
 					</tbody>

@@ -1,5 +1,6 @@
 package net.skhu.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
@@ -58,6 +59,7 @@ public class GuestController {
             model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
             return "guest/edit";
         }
+        System.out.println(a);
         articleService.update(a);
         return "redirect:view?id=" + a.getId() + "&" + pagination.getQueryString();
     }
@@ -67,6 +69,26 @@ public class GuestController {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("articleModel", articleService.findOne(id));
         return "guest/edit";
+    }
+
+
+    @Transactional
+    @RequestMapping(value="FAQ", method=RequestMethod.POST)
+    public String FAQ(@Valid ArticleModel a, BindingResult bindingResult,
+             Model model) {
+    	if (bindingResult.hasErrors()) {
+            //model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
+            return "guest/index";
+        }
+    	int id = articleService.insertArticle(a, 1, 1);
+        return "redirect:FAQ?bd=1";
+    }
+
+    @RequestMapping(value="FAQ", method=RequestMethod.GET)
+    public String FAQ(Pagination pagination, Model model,  HttpServletRequest request) {
+    	model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
+        model.addAttribute("articleModel", new ArticleModel());
+        return "guest/FAQ";
     }
 
     @RequestMapping("greeting")
@@ -79,15 +101,21 @@ public class GuestController {
 		return "guest/index";
 	}
 
-    @RequestMapping("list")
-    public String list(Pagination pagination, Model model) {
+
+
+    @RequestMapping(value="list", method=RequestMethod.GET)
+    public String list(Pagination pagination, Model model,  HttpServletRequest request) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("list", articleService.findAll(pagination));
         model.addAttribute("orderBy", articleService.getOrderByOptions());
         model.addAttribute("searchBy", articleService.getSearchByOptions());
-        return "guest/list";
-    }
+        model.addAttribute("articleModel", new ArticleModel());
+        if (request.isUserInRole("ROLE_ADMIN") || pagination.getBd()==2)
+        	return "guest/list";
+        else
+        	return "guest/FAQ";
 
+    }
     @RequestMapping("login")
 	public String login() {
 		return "guest/login";

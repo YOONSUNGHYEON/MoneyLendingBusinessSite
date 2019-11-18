@@ -22,9 +22,8 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
     Option[] orderBy = { new Option(0, "최근 글"), new Option(1, "오래된 글"),
                          new Option(2, "글쓴이") };
 
-    Sort[] sort = { new Sort(Sort.Direction.DESC, "id"),
-                    new Sort(Sort.Direction.ASC, "id"),
-                    new Sort(Sort.Direction.ASC, "user_name") };
+	Sort[] sort = { new Sort(Sort.Direction.DESC, "id"), new Sort(Sort.Direction.ASC, "id"),
+			new Sort(Sort.Direction.ASC, "name") };
 
     default List<Article> findAll(Pagination pagination) {
         Pageable pageable = PageRequest.of(pagination.getPg() - 1, pagination.getSz(), sort[pagination.getOb()]);
