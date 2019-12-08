@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
@@ -9,14 +10,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
 <!--              script                -->
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=poh5ijsd1t&callback=initMap"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
@@ -24,19 +27,22 @@
 <script src="${R}res/common.js"></script>
 
 
-<link 
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet">
 <link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
 <link href="${R}res/css/modern-business.css" rel="stylesheet">
 
 <title>조운대부</title>
+
 </head>
 <body>
-	<!-- Navigation -->
+	<%--       	상단바         	--%>
 	<!-- Navigation -->
 	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top" style = "font-size:medium;">
+		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top"
+		style="font-size: medium;">
 		<div class="container">
 
 			<a class="navbar-brand" href="index"><img href="index"
@@ -47,7 +53,7 @@
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="navbarResponsive" >
+			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto" height="200px">
 					<li class="nav-item dropdown"><a
 						class="nav-link dropdown-toggle" href="#"
@@ -74,27 +80,31 @@
 							커뮤니티 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="list?bd=1">공지사항</a> <a
-								class="dropdown-item" href="list?bd=2">FAQ</a>
+							<a class="dropdown-item" href="list?bd=2">공지사항</a>
+							<sec:authorize access="not authenticated">
+								<a class="dropdown-item" href="FAQ?bd=1">FAQ</a>
+							</sec:authorize>
+							<sec:authorize access="authenticated">
+								<a class="dropdown-item" href="list?bd=1">FAQ</a>
+							</sec:authorize>
+
 						</div></li>
 
 				</ul>
 			</div>
 		</div>
 	</nav>
-
-
 	<!-- Page Content -->
 	<div class="container">
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			회사소개 <small>찾아오시는길</small>
+			회사소개 <small>인사말</small>
 		</h1>
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="greeting">회사소개</a></li>
-			<li class="breadcrumb-item active">찾아오시는길</li>
+			<li class="breadcrumb-item"><a href="index.html">회사소개</a></li>
+			<li class="breadcrumb-item active">인사말</li>
 		</ol>
 
 		<!-- Content Row -->
@@ -110,27 +120,11 @@
 			</div>
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<div class="col-lg-8 mb-4">
-					<!-- Embedded Google Map -->
-					<iframe width="100%" height="400px" frameborder="0" scrolling="no"
-						marginheight="0" marginwidth="0"
-						src="http://maps.google.com/maps?hl=en&amp;ie=UTF8&amp;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
-				</div>
-				<!-- Contact Details Column -->
-				<div class="col-lg-4 mb-4">
-					<h3>주소</h3>
-					<p>
-						경기 광주시 문화로 129, 2층 <br> <br>
-					</p>
+				<div id="map" style="width: 600px; height: 400px;"></div>
 
-				</div>
 			</div>
 		</div>
 	</div>
-	<!-- /.row -->
-
-	</div>
-	<!-- /.container -->
 
 	<!-- Footer -->
 	<footer class="py-5 bg-dark">
@@ -156,4 +150,23 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="${R}res/vendor/jquery/jquery.min.js"></script>
 	<script src="${R}res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+        var map = null;
+
+        function initMap() {
+        	var map = new naver.maps.Map('map', {
+        	    center: new naver.maps.LatLng(37.414657, 127.251172),
+        	    zoom: 10
+        	});
+
+        	var marker = new naver.maps.Marker({
+        	    position: new naver.maps.LatLng(37.414657, 127.251172),
+        	    map: map
+        	});
+        }
+    </script>
+
+
+
 </body>
+</html>

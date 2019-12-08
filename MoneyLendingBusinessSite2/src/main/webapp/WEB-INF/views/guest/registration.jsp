@@ -74,8 +74,14 @@
 							커뮤니티 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="list?bd=1">공지사항</a> <a
-								class="dropdown-item" href="list?bd=2">FAQ</a>
+							<a class="dropdown-item" href="list?bd=2">공지사항</a>
+							<sec:authorize access="not authenticated">
+								<a class="dropdown-item" href="FAQ?bd=1">FAQ</a>
+							</sec:authorize>
+							<sec:authorize access="authenticated">
+								<a class="dropdown-item" href="list?bd=1">FAQ</a>
+							</sec:authorize>
+							
 						</div></li>
 
 				</ul>

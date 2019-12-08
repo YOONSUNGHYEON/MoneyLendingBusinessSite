@@ -9,7 +9,7 @@ $(function() {
 		return confirm("삭제하시겠습니까???");
 	})
 
-	$('#data-confirm-send').click(function() {
+	$("[data-confirm-send]").click(function() {
 		return confirm("신속한 답변해드리겠습니다.");
 	})
 

@@ -73,8 +73,14 @@
 							커뮤니티 </a>
 						<div class="dropdown-menu dropdown-menu-right"
 							aria-labelledby="navbarDropdownBlog">
-							<a class="dropdown-item" href="list?bd=2">공지사항</a> <a
-								class="dropdown-item" href="list?bd=1">FAQ</a>
+							<a class="dropdown-item" href="list?bd=2">공지사항</a>
+							<sec:authorize access="not authenticated">
+								<a class="dropdown-item" href="FAQ?bd=1">FAQ</a>
+							</sec:authorize>
+							<sec:authorize access="authenticated">
+								<a class="dropdown-item" href="list?bd=1">FAQ</a>
+							</sec:authorize>
+							
 						</div></li>
 
 				</ul>
@@ -100,8 +106,13 @@
 			<!-- 왼쪽메뉴 -->
 			<div class="col-lg-3 mb-4">
 				<div class="list-group">
-					<a href="list?bd=2" class="list-group-item">공지사항</a> <a
-						href="list?bd=1" class="list-group-item">FAQ</a>
+					<a class="list-group-item" href="list?bd=2">공지사항</a>
+							<sec:authorize access="not authenticated">
+								<a class="list-group-item" href="FAQ?bd=1">FAQ</a>
+							</sec:authorize>
+							<sec:authorize access="authenticated">
+								<a class="list-group-item" href="list?bd=1">FAQ</a>
+							</sec:authorize>
 				</div>
 			</div>
 
@@ -122,9 +133,13 @@
 						</div>
 						</br>
 						<button type="submit" class="btn btn-primary btn-block"
-							style="height: 40px; text-size: 50px">
+							style="height: 40px; text-size: 50px" >
 							<span class="glyphicon glyphicon-ok"></span> 문의하기
-						</button>
+						</button> <a class="btn btn-danger"
+							href="delete?id=${ article.id }&${ pagination.queryString }"
+							data-confirm-send> <i class="glyphicon glyphicon-remove"></i>
+							삭제
+						</a> 
 						</form:form>
 					</div>
 				</div>
@@ -142,7 +157,15 @@
 
 		function save() {
 			
-			$('form').submit();
+			if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+				$('form').submit();
+			}else{   //취소
+			    return;
+			}
+
+
+			
+			
 		}
 	</script>
 </body>

@@ -121,8 +121,13 @@
 			<!-- 왼쪽메뉴 -->
 			<div class="col-lg-3 mb-4">
 				<div class="list-group">
-					<a href="list?bd=2" class="list-group-item">공지사항</a> <a
-						href="list?bd=1" class="list-group-item">FAQ</a>
+					<a class="list-group-item" href="list?bd=2">공지사항</a>
+							<sec:authorize access="not authenticated">
+								<a class="list-group-item" href="FAQ?bd=1">FAQ</a>
+							</sec:authorize>
+							<sec:authorize access="authenticated">
+								<a class="list-group-item" href="list?bd=1">FAQ</a>
+							</sec:authorize>
 				</div>
 			</div>
 			<div class="col-lg-9 mb-4" style="font-size: 12px;">
@@ -130,15 +135,7 @@
 				<%-- 글쓰기버튼 --%>
 				<div style="height: 50px;">
 					<div style="height: 50px; float: left; font-size: 12px;">
-						<c:choose>
-							<c:when test="${ board.id >= 2 }">
-								<a class="btn btn-primary"
-									href="create?${pagination.queryString}"
-									style="font-size: 12px;"> <i
-									class="glyphicon glyphicon-plus"></i> 글 쓰기
-								</a>
-							</c:when>
-							<c:otherwise>
+						
 								<sec:authorize access="authenticated">
 									<a class="btn btn-primary"
 										href="create?${pagination.queryString}"
@@ -146,8 +143,7 @@
 										class="glyphicon glyphicon-plus"></i> 글 쓰기
 									</a>
 								</sec:authorize>
-							</c:otherwise>
-						</c:choose>
+
 					</div>
 					<div style="float: right; font-size: 12px;">
 						<form:form method="get" modelAttribute="pagination"
