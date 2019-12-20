@@ -43,38 +43,46 @@
 	<nav
 		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top"
 		style="font-size: medium;">
-		<%@include file="include/nav.jsp"%>
+		<%@include file="include/nav.jsp" %>
 	</nav>
+	
 	<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px" height="230px" align="center">
+	
 	<!-- Page Content -->
 	<div class="container">
-
+	
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			회사소개 <small>인사말</small>
+		
+			전자어음 <small>전자어음배서방법</small>
 		</h1>
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">회사소개</a></li>
-			<li class="breadcrumb-item active">인사말</li>
+			<li class="breadcrumb-item"><a href="index.html">전자어음</a></li>
+			<li class="breadcrumb-item active">전자어음배서방법</li>
+			
 		</ol>
 
 		<!-- Content Row -->
 		<div class="row">
 			<!-- Sidebar Column -->
-			<div class="col-lg-3 mb-4">
+			<div class="col-lg-3 mb-2">
 				<div class="list-group">
 					<a href="greeting" class="list-group-item">인사말</a> <a href="map"
 						class="list-group-item">찾아오시는길</a> <a href="office"
 						class="list-group-item">사무실전경</a> <a href="registration"
 						class="list-group-item">대부업등록증</a>
+						
+					
 				</div>
 				<img src="${R}res/images/문의.png" alt="leaf" width="200px" height="300px" align="center">
 				<img src="${R}res/images/카톡문의2.png" alt="leaf" width="200px" height="300px" align="center">
 			</div>
 			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
-				<div id="map" style="width: 600px; height: 400px;"></div>
+			
+				<img src="${R}res/images/전자어음배서방법1.png" alt="leaf" width="850px" height="450px" align="center">
+				<img src="${R}res/images/전자어음배서방법2.png" alt="leaf" width="850px" height="450px" align="center">
 
 			</div>
 		</div>
@@ -88,23 +96,8 @@
 	<!-- Bootstrap core JavaScript -->
 	<script src="${R}res/vendor/jquery/jquery.min.js"></script>
 	<script src="${R}res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript">
-        var map = null;
 
-        function initMap() {
-        	var map = new naver.maps.Map('map', {
-        	    center: new naver.maps.LatLng(37.414657, 127.251172),
-        	    zoom: 10
-        	});
-
-        	var marker = new naver.maps.Marker({
-        	    position: new naver.maps.LatLng(37.414657, 127.251172),
-        	    map: map
-        	});
-        }
-    </script>
-
-
+   
 
 </body>
 </html>

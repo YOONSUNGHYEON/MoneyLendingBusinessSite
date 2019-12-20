@@ -125,7 +125,6 @@ public class GuestController {
 	public String map() {
 		return "guest/map";
 	}
-
 	@RequestMapping("office")
 	public String office() {
 		return "guest/office";
@@ -135,10 +134,15 @@ public class GuestController {
 	public String registration() {
 		return "guest/registration";
 	}
+
 	@RequestMapping("view")
     public String view(@RequestParam("id") int id, Pagination pagination, Model model) {
     	model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("article", articleService.findOne(id));
         return "guest/view";
     }
+	@RequestMapping("way")
+	public String way() {
+		return "guest/way";
+	}
 }
