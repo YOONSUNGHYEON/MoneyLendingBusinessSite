@@ -15,7 +15,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!--              script                -->
 <script
@@ -23,8 +23,12 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/res/js/bootstrap.min.js"></script>
 <script src="${R}res/common.js"></script>
-
-
+<script src="http://code.jquery.com/jquery-latest.min.js"
+	type="text/javascript"></script>
+<script src="${R}res/js/jquery-latest.js" type="text/javascript"></script>
+<script src="${R}res/js/script.js"></script>
+<link rel="stylesheet" href="${R}res/css/styles.css">
+<link rel="stylesheet" href="${R}res/css/sub-menu-styles.css">
 <link
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -36,50 +40,27 @@
 </head>
 <body>
 
-	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top"
-		style="font-size: medium;">
-		<%@include file="include/nav.jsp"%>
-	</nav>
-	<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
-		height="230px" align="center">
+	<%@include file="include/nav.jsp"%>
+	<div id="imgrelative">
+		<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
+			height="230px" align="center">
+	</div>
 	<%--       container       --%>
-	<div class="container" style="height: 650px;">
+	<div class="container">
 		<%--       container - title       --%>
-		<div>
-			<h1 class="mt-4 mb-3">
-				커뮤니티 <small>${ board.boardName }</small>
-			</h1>
-
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="list?bd=0">커뮤니티</a></li>
-				<li class="breadcrumb-item active">${ board.boardName }</li>
-			</ol>
-		</div>
+		
 		<div class="row">
+			<%@include file="include/third_menu.jsp"%>
 
-			<!-- 중심 -->
-			<!-- 왼쪽메뉴 -->
-			<div class="col-lg-3 mb-4">
-				<div class="list-group">
-					<a class="list-group-item" href="list?bd=2">공지사항</a>
-					<sec:authorize access="not authenticated">
-						<a class="list-group-item" href="FAQ?bd=1">FAQ</a>
-					</sec:authorize>
-					<sec:authorize access="authenticated">
-						<a class="list-group-item" href="list?bd=1">FAQ</a>
-					</sec:authorize>
-				</div>
-				<img src="${R}res/images/문의.png" alt="leaf" width="200px"
-					height="300px" align="center"> <img
-					src="${R}res/images/카톡문의2.png" alt="leaf" width="200px"
-					height="300px" align="center">
-			</div>
-			<div class="col-lg-9 mb-4" style="font-size: 12px;">
+				
+			<div class="col-lg-9 mb-4">
 				</br>
+				<div id="submenufont">
+				<p>공지사항</p>
+				<hr style="border: solid 0.5px gray; width: 50%;" align="center">
+				</div>
 				<%-- 글쓰기버튼 --%>
-				<div style="height: 50px;">
+				<div style="height: 50px;" style="font-size: 12px;">
 					<div style="height: 50px; float: left; font-size: 12px;">
 
 						<sec:authorize access="authenticated">

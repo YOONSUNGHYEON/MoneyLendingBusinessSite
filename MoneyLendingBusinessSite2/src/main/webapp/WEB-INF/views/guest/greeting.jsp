@@ -10,73 +10,59 @@
 <!DOCTYPE html>
 <html>
 <head>
-
 <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
-<!--              script                -->
-<script
-	src="http://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/res/js/bootstrap.min.js"></script>
-<script src="${R}res/common.js"></script>
 
 
-<link
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+   <link rel="stylesheet" href="${R}res/css/styles.css">
+   <link rel="stylesheet" href="${R}res/css/sub-menu-styles.css">
+   <link
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
+	<link href="${R}res/vendor/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet">
-<link href="${R}res/css/modern-business.css" rel="stylesheet">
+	<link href="${R}res/css/modern-business.css" rel="stylesheet">
+   
+  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+   <script src="${R}res/js/jquery-latest.js" type="text/javascript"></script>
+   <script src="${R}res/js/script.js"></script>
 
 <title>조운대부</title>
+
+
+
 </head>
 <body>
-	<%--       	상단바         	--%>
-	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top"
-		style="font-size: medium;">
+
 		<%@include file="include/nav.jsp"%>
-	</nav>
+<div id="imgrelative">
 	<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
 		height="230px" align="center">
+		</div>
 	<!-- Page Content -->
 	<div class="container">
 
-		<!-- Page Heading/Breadcrumbs -->
-		<h1 class="mt-4 mb-3">
-			회사소개 <small>인사말</small>
-		</h1>
-
-		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="index.html">회사소개</a></li>
-			<li class="breadcrumb-item active">인사말</li>
-		</ol>
+		
 
 		<!-- Content Row -->
 		<div class="row">
-			<!-- Sidebar Column -->
-			<div class="col-lg-3 mb-4">
-				<div class="list-group">
-					<a href="greeting" class="list-group-item">인사말</a> <a href="map"
-						class="list-group-item">찾아오시는길</a> <a href="office"
-						class="list-group-item">사무실전경</a> <a href="registration"
-						class="list-group-item">대부업등록증</a>
-				</div>
-				<img src="${R}res/images/문의.png" alt="leaf" width="200px" height="300px" align="center">
-				<img src="${R}res/images/카톡문의2.png" alt="leaf" width="200px" height="300px" align="center">
-			</div>
+			<!-- menu -->
+			<%@include file="include/first_menu.jsp"%>
 			<!-- Content Column -->
-			<div class="col-lg-9 mb-4">
-				<h2>Section Heading</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-					Soluta, et temporibus, facere perferendis veniam beatae non
-					debitis, numquam blanditiis necessitatibus vel mollitia dolorum
-					laudantium, voluptate dolores iure maxime ducimus fugit.</p>
+			<div class="col-lg-9 mb-4" id="submenufont">
+			<p>인사말</p>
+			<hr style="border:  solid 0.5px gray; width: 50%;"align="center">
+				<img src="${R}res/images/인사말.png" alt="leaf" width="850px" height="450px" align="center"style=" margin-top:40px;margin-left:20px;">
+				
+
 			</div>
 		</div>
 		<!-- /.row -->

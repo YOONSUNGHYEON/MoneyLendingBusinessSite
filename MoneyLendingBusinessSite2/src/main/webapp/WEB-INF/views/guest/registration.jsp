@@ -58,17 +58,8 @@
 
       <!-- Content Row -->
       <div class="row">
-        <!-- Sidebar Column -->
-        <div class="col-lg-3 mb-4">
-          <div class="list-group">
-            <a href="greeting" class="list-group-item">인사말</a>
-            <a href="map" class="list-group-item">찾아오시는길</a>
-            <a href="office" class="list-group-item">사무실전경</a>
-            <a href="registration" class="list-group-item action">대부업등록증</a>
-          </div>
-          <img src="${R}res/images/문의.png" alt="leaf" width="200px" height="300px" align="center">
-				<img src="${R}res/images/카톡문의2.png" alt="leaf" width="200px" height="300px" align="center">
-        </div>
+        <!-- menu -->
+			<%@include file="include/first_menu.jsp"%>
         <!-- Content Column -->
         <div class="col-lg-9 mb-4">
           <h2>Section Heading</h2>

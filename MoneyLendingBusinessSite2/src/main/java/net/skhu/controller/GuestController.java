@@ -18,7 +18,7 @@ import net.skhu.repository.BoardRepository;
 import net.skhu.service.ArticleService;
 
 @Controller
-@RequestMapping("guest")
+
 public class GuestController {
 
     @Autowired ArticleService articleService;
@@ -26,8 +26,21 @@ public class GuestController {
 
 
 
-	@Transactional
-    @RequestMapping(value="create", method=RequestMethod.POST)
+	@RequestMapping("guest/bill")
+	public String bill() {
+		return "guest/bill";
+	}
+	@RequestMapping("guest/bill2")
+	public String bill2() {
+		return "guest/bill2";
+	}
+	@RequestMapping("guest/bill3")
+	public String bill3() {
+		return "guest/bill3";
+	}
+
+    @Transactional
+    @RequestMapping(value="guest/create", method=RequestMethod.POST)
     public String create(@Valid ArticleModel a, BindingResult bindingResult,
             Pagination pagination, Model model) {
         if (bindingResult.hasErrors()) {
@@ -38,21 +51,21 @@ public class GuestController {
         return "redirect:view?id=" + id + "&" + pagination.getQueryString();
     }
 
-    @RequestMapping(value="create", method=RequestMethod.GET)
+    @RequestMapping(value="guest/create", method=RequestMethod.GET)
     public String create(Pagination pagination, Model model) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("articleModel", new ArticleModel());
         return "guest/edit";
     }
 
-    @RequestMapping(value="delete", method=RequestMethod.GET)
+    @RequestMapping(value="guest/delete", method=RequestMethod.GET)
     public String delete(@RequestParam("id") int id, Pagination pagination, Model model) {
         articleService.delete(id);
         return "redirect:list?" + pagination.getQueryString();
     }
 
     @Transactional
-    @RequestMapping(value="edit", method=RequestMethod.POST)
+    @RequestMapping(value="guest/edit", method=RequestMethod.POST)
     public String edit(@Valid ArticleModel a, BindingResult bindingResult,
             Pagination pagination, Model model) {
         if (bindingResult.hasErrors()) {
@@ -64,16 +77,16 @@ public class GuestController {
         return "redirect:view?id=" + a.getId() + "&" + pagination.getQueryString();
     }
 
-    @RequestMapping(value="edit", method=RequestMethod.GET)
+
+    @RequestMapping(value="guest/dit", method=RequestMethod.GET)
     public String edit(@RequestParam("id") int id, Pagination pagination, Model model) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("articleModel", articleService.findOne(id));
         return "guest/edit";
     }
 
-
     @Transactional
-    @RequestMapping(value="FAQ", method=RequestMethod.POST)
+    @RequestMapping(value="guest/FAQ", method=RequestMethod.POST)
     public String FAQ(@Valid ArticleModel a, BindingResult bindingResult,
              Model model) {
     	if (bindingResult.hasErrors()) {
@@ -84,26 +97,25 @@ public class GuestController {
         return "redirect:FAQ?bd=1";
     }
 
-    @RequestMapping(value="FAQ", method=RequestMethod.GET)
+    @RequestMapping(value="guest/FAQ", method=RequestMethod.GET)
     public String FAQ(Pagination pagination, Model model,  HttpServletRequest request) {
     	model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("articleModel", new ArticleModel());
         return "guest/FAQ";
     }
 
-    @RequestMapping("greeting")
+    @RequestMapping("guest/greeting")
 	public String greeting() {
 		return "guest/greeting";
 	}
 
-    @RequestMapping({ "/", "index" })
+
+
+    @RequestMapping({ "/", "guest/index" })
 	public String index() {
 		return "guest/index";
 	}
-
-
-
-    @RequestMapping(value="list", method=RequestMethod.GET)
+    @RequestMapping(value="guest/list", method=RequestMethod.GET)
     public String list(Pagination pagination, Model model,  HttpServletRequest request) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("list", articleService.findAll(pagination));
@@ -116,32 +128,33 @@ public class GuestController {
         	return "guest/FAQ";
 
     }
-    @RequestMapping("login")
+
+	@RequestMapping("guest/login")
 	public String login() {
 		return "guest/login";
 	}
-
-	@RequestMapping("map")
+	@RequestMapping("guest/map")
 	public String map() {
 		return "guest/map";
 	}
-	@RequestMapping("office")
+
+	@RequestMapping("guest/office")
 	public String office() {
 		return "guest/office";
 	}
 
-	@RequestMapping("registration")
+	@RequestMapping("guest/registration")
 	public String registration() {
 		return "guest/registration";
 	}
-
-	@RequestMapping("view")
+	@RequestMapping("guest/view")
     public String view(@RequestParam("id") int id, Pagination pagination, Model model) {
     	model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("article", articleService.findOne(id));
         return "guest/view";
     }
-	@RequestMapping("way")
+
+	@RequestMapping("guest/way")
 	public String way() {
 		return "guest/way";
 	}

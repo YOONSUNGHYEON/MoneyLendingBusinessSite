@@ -31,87 +31,62 @@
 	rel="stylesheet">
 	<link href="${R}res/css/modern-business.css" rel="stylesheet">
    
-  <script src="http://code.jquery.com/jquery-latest.min.js"
-	type="text/javascript"></script>
+  <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
    <script src="${R}res/js/jquery-latest.js" type="text/javascript"></script>
    <script src="${R}res/js/script.js"></script>
 
 <title>조운대부</title>
 
 
+
 </head>
 <body>
+	<%--       	상단바         	--%>
+	<!-- Navigation -->
 
-		<%@include file="include/nav.jsp"%>
-
+		<%@include file="include/nav.jsp" %>	
+	
 	<div id="imgrelative">
-		<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
-			height="230px" align="center">
-	</div>
+		<img src="${R}res/images/게시판로고.png"  alt="leaf" width="1540px" height="230px" align="center" >
+</div>
+	<!-- Page Content -->
 	<div class="container">
+	
 		
+
+		<!-- Content Row -->
 		<div class="row">
-
-			<!-- 중심 -->
-			<!-- 왼쪽메뉴 -->
-			<%@include file="include/third_menu.jsp"%>
-
+		<!-- menu -->
+			<%@include file="include/fourth_menu.jsp"%>
+			
+			<!-- Content Column -->
 			<div class="col-lg-9 mb-4">
 			<div id="submenufont">
-				<p>문의하기</p>
-				<hr style="border: solid 0.5px gray; width: 50%;" align="center">
+					<p>가계/당좌수표할인안내</p>
 				</div>
-				<div class="card my-4">
+			
+			<hr style="border:  solid 0.5px gray; width: 50%;"align="center">
+			
+				<div style="margin-left:40px; margin-top:60px; margin-bottom:40px; font-size: 15px;font-weight:bold;">
+					<p style="font-size: 25px;color:#6788f1;">■구비서류</p>
 					
-					<div class="card-body">
-						<div class="form-group">
-							<form:form method="post" modelAttribute="articleModel">
-								<label>연락처</label>
-								<form:input path="title" class="form-control"
-									style="width:400px;" />
-								<form:errors path="title" class="error" />
-								</br>
-								<label>추가내용</label>
-								<textarea class="form-control" rows="15" path="body" name="body"></textarea>
-								<form:errors path="body" class="error" />
-						</div>
-						</br>
-						<button type="submit" class="btn btn-primary btn-block"
-							style="height: 40px; text-size: 50px">
-							<span class="glyphicon glyphicon-ok"></span> 문의하기
-						</button>
-						
-						</form:form>
+					<p>1.의뢰인 사업자 등록증 사본<br>2.세금계산서 사본<br>3.신분증 사본<br>4.통장 사본</p>
 					</div>
-				</div>
-
 
 			</div>
 		</div>
 	</div>
-	</div>
 
-	<script>
-		$('#summernote').summernote({
-			height : 500
-		});
+	<!-- Footer -->
+	<footer class="py-5 bg-dark">
+		<%@include file="include/footer.jsp" %>
+	</footer>
 
-		function save() {
+	<!-- Bootstrap core JavaScript -->
+	<script src="${R}res/vendor/jquery/jquery.min.js"></script>
+	<script src="${R}res/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-			if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-				$('form').submit();
-			} else { //취소
-				return;
-			}
+   
 
-		}
-	</script>
 </body>
-<!-- Footer -->
-<footer class="py-5 bg-dark">
-	<%@include file="include/footer.jsp"%>
-</footer>
-
-
-
 </html>

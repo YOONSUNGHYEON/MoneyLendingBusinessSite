@@ -15,7 +15,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 <!--              script                -->
 <script
@@ -23,8 +23,12 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/res/js/bootstrap.min.js"></script>
 <script src="${R}res/common.js"></script>
-
-
+<script src="http://code.jquery.com/jquery-latest.min.js"
+	type="text/javascript"></script>
+<script src="${R}res/js/jquery-latest.js" type="text/javascript"></script>
+<script src="${R}res/js/script.js"></script>
+<link rel="stylesheet" href="${R}res/css/styles.css">
+<link rel="stylesheet" href="${R}res/css/sub-menu-styles.css">
 <link
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	rel="stylesheet">
@@ -59,48 +63,19 @@ html, body {
 <body>
 	<%--       	상단바         	--%>
 	<!-- Navigation -->
-	<nav
-		class="navbar fixed-top navbar-expand-lg navbar-light bg-light fixed-top"
-		style="font-size: medium;">
-		<%@include file="include/nav.jsp"%>
-	</nav>
-
-	<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
-		height="230px" align="center">
-	<div id="container">
+	 <%@include file="include/nav.jsp"%>
+		<div id="imgrelative">
+		<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
+			height="230px" align="center">
+	</div>
+		<div id="container">
 		<div class="container">
 			<%--       container - title       --%>
-			<div>
-				<h1 class="mt-4 mb-3">
-					커뮤니티 <small>${ board.boardName }</small>
-				</h1>
-
-				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="list?bd=0">커뮤니티</a></li>
-					<li class="breadcrumb-item active">${ board.boardName }</li>
-				</ol>
-			</div>
-			<hr />
+			
+			
 			<div class="row">
 
-				<!-- 중심 -->
-				<!-- 왼쪽메뉴 -->
-				<div class="col-lg-3 mb-4">
-					<div class="list-group">
-						<a class="list-group-item" href="list?bd=2">공지사항</a>
-						<sec:authorize access="not authenticated">
-							<a class="list-group-item" href="FAQ?bd=1">FAQ</a>
-						</sec:authorize>
-						<sec:authorize access="authenticated">
-							<a class="list-group-item" href="list?bd=1">FAQ</a>
-						</sec:authorize>
-
-					</div>
-					<img src="${R}res/images/문의.png" alt="leaf" width="200px"
-						height="300px" align="center"> <img
-						src="${R}res/images/카톡문의2.png" alt="leaf" width="200px"
-						height="300px" align="center">
-				</div>
+			<%@include file="include/third_menu.jsp"%>
 				<div class="col-lg-9 mb-4" style="font-size: 12px;" id="content">
 					<h3>${ article.title }</h3>
 					<hr />
@@ -111,15 +86,8 @@ html, body {
 						<%-- <span>글쓴시각:</span> <span><fmt:formatDate
 								pattern="yyyy-MM-dd HH:mm:ss" value="${ article.writeTime }" /></span>--%>
 					</div>
-					<hr />
-					<div id="body">${ article.body }</div>
-					<hr />
-
-
-
-
-
-					<div id="buttons" style="min-height: 20%;">
+		<hr /> <div id="body">${ article.body }</div> <hr />
+		<div id="buttons" style="min-height: 20%;">
 						<sec:authorize access="authenticated">
 							<a class="btn btn-primary"
 								href="edit?id=${ article.id }&${ pagination.queryString }">
@@ -135,16 +103,15 @@ html, body {
 							<i class="glyphicon glyphicon-list"></i> 목록으로
 						</a>
 					</div>
-
-				</div>
-			</div>
+		</div>
+		</div>
 		</div>
 
 		<!-- Footer -->
 		<footer class="py-5 bg-dark">
 			<%@include file="include/footer.jsp"%>
 		</footer>
-	</div>
+		</div>
 </body>
 
 
