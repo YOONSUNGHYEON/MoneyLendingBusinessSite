@@ -76,31 +76,32 @@ public class GuestController {
         articleService.update(a);
         return "redirect:view?id=" + a.getId() + "&" + pagination.getQueryString();
     }
-
-
-    @RequestMapping(value="guest/dit", method=RequestMethod.GET)
+    @RequestMapping(value="guest/edit", method=RequestMethod.GET)
     public String edit(@RequestParam("id") int id, Pagination pagination, Model model) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
         model.addAttribute("articleModel", articleService.findOne(id));
         return "guest/edit";
     }
 
+
     @Transactional
     @RequestMapping(value="guest/FAQ", method=RequestMethod.POST)
     public String FAQ(@Valid ArticleModel a, BindingResult bindingResult,
-             Model model) {
-    	if (bindingResult.hasErrors()) {
-            //model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
+            Pagination pagination, Model model) {
+        if (bindingResult.hasErrors()) {
+        	 model.addAttribute("board", boardRepository.findById(1).get());
             return "guest/index";
         }
-    	int id = articleService.insertArticle(a, 1, 1);
-        return "redirect:FAQ?bd=1";
+        int id = articleService.insertArticle(a, 1, 1);
+        return "redirect:guest/FAQ";
     }
 
     @RequestMapping(value="guest/FAQ", method=RequestMethod.GET)
     public String FAQ(Pagination pagination, Model model,  HttpServletRequest request) {
-    	model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
+    	 model.addAttribute("board", boardRepository.findById(1).get());
         model.addAttribute("articleModel", new ArticleModel());
+        if (request.isUserInRole("ROLE_ADMIN"))
+        	return "guest/list";
         return "guest/FAQ";
     }
 
@@ -115,6 +116,15 @@ public class GuestController {
 	public String index() {
 		return "guest/index";
 	}
+    @RequestMapping(value="guest/list", method=RequestMethod.POST)
+    public String list(@Valid ArticleModel a, BindingResult bindingResult,
+             Model model) {
+    	if (bindingResult.hasErrors()) {
+            return "guest/index";
+        }
+    	int id = articleService.insertArticle(a, 1, 1);
+        return "redirect:list?bd=1";
+    }
     @RequestMapping(value="guest/list", method=RequestMethod.GET)
     public String list(Pagination pagination, Model model,  HttpServletRequest request) {
         model.addAttribute("board", boardRepository.findById(pagination.getBd()).get());
@@ -128,7 +138,6 @@ public class GuestController {
         	return "guest/FAQ";
 
     }
-
 	@RequestMapping("guest/login")
 	public String login() {
 		return "guest/login";

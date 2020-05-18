@@ -42,8 +42,7 @@
 
 	<%@include file="include/nav.jsp"%>
 	<div id="imgrelative">
-		<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
-			height="230px" align="center">
+		<img src="${R}res/images/게시판로고.png" alt="leaf" width="100%" height="100%" align="center">
 	</div>
 	<%--       container       --%>
 	<div class="container">
@@ -56,7 +55,7 @@
 			<div class="col-lg-9 mb-4">
 				</br>
 				<div id="submenufont">
-				<p>공지사항</p>
+				<p>${ board.boardName }</p>
 				<hr style="border: solid 0.5px gray; width: 50%;" align="center">
 				</div>
 				<%-- 글쓰기버튼 --%>

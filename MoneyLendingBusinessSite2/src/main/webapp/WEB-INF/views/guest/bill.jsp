@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-	prefix="sec"%>
+
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib tagdir="/WEB-INF/tags" prefix="my"%>
@@ -11,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -47,8 +46,8 @@
 		<%@include file="include/nav.jsp" %>	
 	
 	<div id="imgrelative">
-		<img src="${R}res/images/게시판로고.png"  alt="leaf" width="1540px" height="230px" align="center" >
-</div>
+		<img src="${R}res/images/게시판로고.png"  alt="leaf" width="100%" height="100%" align="center" >
+	</div>
 	<!-- Page Content -->
 	<div class="container">
 	

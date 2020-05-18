@@ -65,8 +65,7 @@ html, body {
 	<!-- Navigation -->
 	 <%@include file="include/nav.jsp"%>
 		<div id="imgrelative">
-		<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
-			height="230px" align="center">
+		<img src="${R}res/images/게시판로고.png" alt="leaf"width="100%" height="100%" align="center">
 	</div>
 		<div id="container">
 		<div class="container">

@@ -44,8 +44,7 @@
 
 		<%@include file="include/nav.jsp"%>
 <div id="imgrelative">
-	<img src="${R}res/images/게시판로고.png" alt="leaf" width="1540px"
-		height="230px" align="center">
+	<img src="${R}res/images/게시판로고.png" alt="leaf" width="100%" height="100%" align="center">
 		</div>
 	<!-- Page Content -->
 	<div class="container">
@@ -60,7 +59,7 @@
 			<div class="col-lg-9 mb-4" id="submenufont">
 			<p>인사말</p>
 			<hr style="border:  solid 0.5px gray; width: 50%;"align="center">
-				<img src="${R}res/images/인사말.png" alt="leaf" width="850px" height="450px" align="center"style=" margin-top:40px;margin-left:20px;">
+				<img src="${R}res/images/인사말.png" alt="leaf" width="90%" height="60%" align="center"style=" margin-top:40px;margin-left:20px;">
 				
 
 			</div>
